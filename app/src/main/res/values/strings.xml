@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PixQuest</string>
+    <string name="register"><u><b>Register Here</b></u></string>
 </resources>

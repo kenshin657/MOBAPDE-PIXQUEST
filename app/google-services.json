@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "571908482237",
+    "firebase_url": "https://pixquest-412a2.firebaseio.com",
+    "project_id": "pixquest-412a2",
+    "storage_bucket": "pixquest-412a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571908482237:android:6188787db29e9955a0c3d4",
+        "android_client_info": {
+          "package_name": "com.example.pixquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571908482237-vr6ri156in9uo3fnboqcm0ns9s72vqkn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pixquest",
+            "certificate_hash": "9afd4855152f9ea519eb136da3e604f8b799f58b"
+          }
+        },
+        {
+          "client_id": "571908482237-v2c4tukuuao8h6bqqvv92eib21jnb936.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-OK9WMXEKf7JUQBSZ0e8yUjRqo2b6vzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571908482237-v2c4tukuuao8h6bqqvv92eib21jnb936.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
