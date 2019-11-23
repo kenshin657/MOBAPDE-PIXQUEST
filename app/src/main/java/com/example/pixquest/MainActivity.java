@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void login(View v){
+        Intent intent = new Intent(this, PixQuest_Main.class);
+        startActivity(intent);
+    }
+
     public void register(View v) {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);

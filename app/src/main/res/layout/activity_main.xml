@@ -61,7 +61,8 @@
         android:background="@drawable/button"
         android:text="Login"
         android:textColor="#fff"
-        android:textSize="23sp"/>
+        android:textSize="23sp"
+        android:onClick="login"/>
 
     <com.google.android.gms.common.SignInButton
         android:layout_width="300dp"
