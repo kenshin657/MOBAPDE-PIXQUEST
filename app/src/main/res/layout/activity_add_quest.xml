@@ -38,11 +38,55 @@
         android:hint="Reward Amount"/>
 
     <Button
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Quest"
-        android:layout_below="@+id/reward"
-        android:onClick="startQuest"/>
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="34dp"
+        android:onClick="startQuest"
+        android:text="Add Quest" />
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/reward">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Pick"
+            android:onClick="datePick"
+            android:id="@+id/datePicker"></Button>
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            android:id="@+id/dateView"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Pick"
+            android:onClick="timePick"
+            android:id="@+id/timePicker"></Button>
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            android:id="@+id/timeView"></EditText>
+
+    </LinearLayout>
 
 </RelativeLayout>
