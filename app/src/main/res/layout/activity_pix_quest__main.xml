@@ -30,25 +30,38 @@
         android:orientation="vertical"
         android:layout_below="@id/header">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Single Quests"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Daily Quests"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Weekly Quests"/>
+        <TextView
+            android:text="Single Quests"
+            android:textSize="60px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <ListView
-            android:id="@+id/postList"
+            android:id="@+id/singleList"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Daily Quests"
+            android:textSize="60px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ListView
+            android:id="@+id/dailyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Weekly Quests"
+            android:textSize="60px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ListView
+            android:id="@+id/weeklyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </RelativeLayout>
