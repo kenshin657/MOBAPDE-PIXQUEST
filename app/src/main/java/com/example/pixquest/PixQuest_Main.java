@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +23,7 @@ public class PixQuest_Main extends AppCompatActivity {
     ListView singleList, dailyList, weeklyList;
     ArrayList<Quest> singleQuests, dailyQuests, weeklyQuests;
     DatabaseReference databaseSingle, databaseDaily, databaseWeekly;
+    String un;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class PixQuest_Main extends AppCompatActivity {
         singleList = findViewById(R.id.singleList);
         dailyList = findViewById(R.id.dailyList);
         weeklyList = findViewById(R.id.weeklyList);
+
+        Intent intent = getIntent();
+        un = intent.getStringExtra("USER");
 
         singleQuests = new ArrayList<>();
         dailyQuests = new ArrayList<>();
@@ -51,7 +57,9 @@ public class PixQuest_Main extends AppCompatActivity {
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
-                    singleQuests.add(quest);
+                    if(quest.getOwner().equals(un)){
+                        singleQuests.add(quest);
+                    }
                 }
 
                 QuestList questAdapter = new QuestList(PixQuest_Main.this, singleQuests);
@@ -71,7 +79,9 @@ public class PixQuest_Main extends AppCompatActivity {
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
-                    dailyQuests.add(quest);
+                    if(quest.getOwner().equals(un)){
+                        dailyQuests.add(quest);
+                    }
                 }
 
                 QuestList questAdapter = new QuestList(PixQuest_Main.this, dailyQuests);
@@ -91,7 +101,9 @@ public class PixQuest_Main extends AppCompatActivity {
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
-                    weeklyQuests.add(quest);
+                    if(quest.getOwner().equals(un)) {
+                        weeklyQuests.add(quest);
+                    }
                 }
 
                 QuestList questAdapter = new QuestList(PixQuest_Main.this, weeklyQuests);
@@ -107,6 +119,7 @@ public class PixQuest_Main extends AppCompatActivity {
 
     public void addQuest(View v){
         Intent intent = new Intent(this, AddQuest.class);
+        intent.putExtra("USER", un);
         startActivity(intent);
     }
 }

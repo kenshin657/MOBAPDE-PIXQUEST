@@ -35,6 +35,7 @@ public class AddQuest extends AppCompatActivity {
     EditText title, description, reward, dateView, timeView;
     final Calendar cal = Calendar.getInstance();
     int mYear, mMonth, mDay, mHour, mMinute;
+    String un;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class AddQuest extends AppCompatActivity {
         dateView = findViewById(R.id.dateView);
         timeView = findViewById(R.id.timeView);
 
+        Intent intent = getIntent();
+        un = intent.getStringExtra("USER");
 
         String[] options = new String[]{"Single Quest", "Daily Quest", "Weekly Quest"};
         ArrayAdapter<String> optionadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, options);
@@ -71,8 +74,6 @@ public class AddQuest extends AppCompatActivity {
             rewardvalue = 100;
         }
 
-        String owner = "default";
-
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = format.format(today);
@@ -83,19 +84,19 @@ public class AddQuest extends AppCompatActivity {
         if(this.type.getSelectedItem().equals("Single Quest")){
             type = 0;
             id = singlequests.push().getKey();
-            quest = new Quest(id, title, description, date, owner, rewardvalue, type);
+            quest = new Quest(id, title, description, date, un, rewardvalue, type);
             singlequests.child(id).setValue(quest);
         }
         else if(this.type.getSelectedItem().equals("Daily Quest")){
             type = 1;
             id = dailyquests.push().getKey();
-            quest = new Quest(id, title, description, date, owner, rewardvalue, type);
+            quest = new Quest(id, title, description, date, un, rewardvalue, type);
             dailyquests.child(id).setValue(quest);
         }
         else{
             type = 2;
             id = weeklyquests.push().getKey();
-            quest = new Quest(id, title, description, date, owner, rewardvalue, type);
+            quest = new Quest(id, title, description, date, un, rewardvalue, type);
             weeklyquests.child(id).setValue(quest);
         }
 
