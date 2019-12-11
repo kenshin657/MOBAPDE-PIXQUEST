@@ -3,12 +3,18 @@ package com.example.pixquest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +50,40 @@ public class PixQuest_Main extends AppCompatActivity {
         singleQuests = new ArrayList<>();
         dailyQuests = new ArrayList<>();
         weeklyQuests = new ArrayList<>();
+
+        singleList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest singlequest = singleQuests.get(position);
+                showDeleteDialog(singlequest.getId(),singlequest.getTitle(),singlequest.getType());
+
+
+                return true;
+            }
+        });
+
+        dailyList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest dailyquest = dailyQuests.get(position);
+                showDeleteDialog(dailyquest.getId(),dailyquest.getTitle(),dailyquest.getType());
+
+
+                return true;
+            }
+        });
+
+        weeklyList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest weeklyquest = weeklyQuests.get(position);
+                showDeleteDialog(weeklyquest.getId(),weeklyquest.getTitle(),weeklyquest.getType());
+
+
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -122,4 +162,62 @@ public class PixQuest_Main extends AppCompatActivity {
         intent.putExtra("USER", un);
         startActivity(intent);
     }
+
+    private void showDeleteDialog(final String postId, String title, final int type) {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.delete_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteArtist);
+
+        dialogBuilder.setTitle(title);
+
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+
+
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                deletepost(postId , type);
+                b.dismiss();
+            }
+        });
+    }
+
+    private boolean deletepost(String id, int type) {
+        if(type == 0 ) {
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("singlequests").child(id);
+
+
+            dR.removeValue();
+
+            Toast.makeText(getApplicationContext(), "Quest deleted", Toast.LENGTH_LONG).show();
+        }
+        if(type == 1 ) {
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("dailyquests").child(id);
+
+
+            dR.removeValue();
+
+            Toast.makeText(getApplicationContext(), "Quest deleted", Toast.LENGTH_LONG).show();
+        }
+        if(type == 2 ) {
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("weeklyquests").child(id);
+
+
+            dR.removeValue();
+
+            Toast.makeText(getApplicationContext(), "Quest deleted", Toast.LENGTH_LONG).show();
+        }
+
+
+        return true;
+    }
+
 }
