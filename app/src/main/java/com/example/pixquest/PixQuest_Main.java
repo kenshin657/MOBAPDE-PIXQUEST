@@ -61,6 +61,14 @@ public class PixQuest_Main extends AppCompatActivity {
             }
         });
 
+        singleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest singlequest = singleQuests.get(position);
+                showCompleteDialog(singlequest);
+            }
+        });
+
         dailyList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +77,14 @@ public class PixQuest_Main extends AppCompatActivity {
 
 
                 return true;
+            }
+        });
+
+        dailyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest dailyquest = dailyQuests.get(position);
+                showCompleteDialog(dailyquest);
             }
         });
 
@@ -83,6 +99,13 @@ public class PixQuest_Main extends AppCompatActivity {
             }
         });
 
+        weeklyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Quest weeklyquest = weeklyQuests.get(position);
+                showCompleteDialog(weeklyquest);
+            }
+        });
     }
 
     @Override
@@ -123,6 +146,15 @@ public class PixQuest_Main extends AppCompatActivity {
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
                     if(quest.getOwner().equals(un)){
+
+                        String todayData[] = date.split("-");
+                        String lastData[] = quest.getLastCompleted().split("-");
+                        int dayDifference = Integer.parseInt(todayData[2]) - Integer.parseInt(lastData[2]);
+                        if(dayDifference!=0){
+                            quest.setComplete(false);
+                            String id = quest.getId();
+                            databaseDaily.child(id).setValue(quest);
+                        }
                         dailyQuests.add(quest);
                     }
                 }
@@ -170,6 +202,32 @@ public class PixQuest_Main extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void showCompleteDialog(final Quest quest){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.complete_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button buttonComplete = (Button) dialogView.findViewById(R.id.buttonCompleteArtist);
+        dialogBuilder.setTitle(quest.getTitle());
+
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        buttonComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(quest.isComplete()){
+                    Toast.makeText(getApplicationContext(), "Quest has been completed already!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    completepost(quest);
+                    b.dismiss();
+                }
+            }
+        });
+    }
+
     private void showDeleteDialog(final String postId, String title, final int type) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -195,6 +253,28 @@ public class PixQuest_Main extends AppCompatActivity {
                 b.dismiss();
             }
         });
+    }
+
+    private void completepost(Quest quest){
+        Date today = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format.format(today);
+        quest.setLastCompleted(date);
+        quest.setComplete(true);
+
+        switch(quest.getType()){
+            case 0:
+                databaseSingle.child(quest.getId()).setValue(quest);
+                break;
+            case 1:
+                databaseDaily.child(quest.getId()).setValue(quest);
+                break;
+            case 2:
+                databaseWeekly.child(quest.getId()).setValue(quest);
+                break;
+            default:
+                break;
+        }
     }
 
     private boolean deletepost(String id, int type) {

@@ -46,6 +46,10 @@ public class Quest {
         return lastCompleted;
     }
 
+    public void setLastCompleted(String lastCompleted) {
+        this.lastCompleted = lastCompleted;
+    }
+
     public boolean isComplete() {
         return isComplete;
     }
