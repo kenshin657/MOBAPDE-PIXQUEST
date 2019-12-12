@@ -77,6 +77,7 @@ public class AddQuest extends AppCompatActivity {
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String date = format.format(today);
+        String lastcomplete = ("2000-01-01");
 
         int type;
         String id;
@@ -84,19 +85,19 @@ public class AddQuest extends AppCompatActivity {
         if(this.type.getSelectedItem().equals("Single Quest")){
             type = 0;
             id = singlequests.push().getKey();
-            quest = new Quest(id, title, description, date, un, rewardvalue, type);
+            quest = new Quest(id, title, description, date, lastcomplete, un, rewardvalue, type);
             singlequests.child(id).setValue(quest);
         }
         else if(this.type.getSelectedItem().equals("Daily Quest")){
             type = 1;
             id = dailyquests.push().getKey();
-            quest = new Quest(id, title, description, date, un, rewardvalue, type);
+            quest = new Quest(id, title, description, date, lastcomplete, un, rewardvalue, type);
             dailyquests.child(id).setValue(quest);
         }
         else{
             type = 2;
             id = weeklyquests.push().getKey();
-            quest = new Quest(id, title, description, date, un, rewardvalue, type);
+            quest = new Quest(id, title, description, date, lastcomplete, un, rewardvalue, type);
             weeklyquests.child(id).setValue(quest);
         }
 
