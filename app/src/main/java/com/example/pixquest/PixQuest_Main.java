@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PixQuest_Main extends AppCompatActivity {
 
@@ -114,6 +116,10 @@ public class PixQuest_Main extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dailyQuests.clear();
 
+                Date today = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String date = format.format(today);
+
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
                     if(quest.getOwner().equals(un)){
@@ -135,6 +141,10 @@ public class PixQuest_Main extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 weeklyQuests.clear();
+
+                Date today = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String date = format.format(today);
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);

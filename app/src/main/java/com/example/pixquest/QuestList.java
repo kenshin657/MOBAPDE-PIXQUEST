@@ -34,7 +34,12 @@ public class QuestList extends ArrayAdapter<Quest> {
         TextView textViewDescription = listViewItem.findViewById(R.id.textViewDescription);
 
         Quest quest = quests.get(position);
-        textViewName.setText(quest.getTitle());
+        if(quest.isComplete()){
+            textViewName.setText(quest.getTitle() + " [COMPLETED]");
+        }
+        else{
+            textViewName.setText(quest.getTitle());
+        }
         textViewReward.setText(Integer.toString(quest.getReward()));
         textViewDescription.setText(quest.getDescription());
 
