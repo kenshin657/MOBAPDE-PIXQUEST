@@ -1,12 +1,13 @@
 package com.example.pixquest;
 
 public class User {
-    private String username, password, img;
+    private String username, password, img, id;
     private int credit, singlecompleted, dailycompleted, weeklycompleted;
 
     public User(){}
 
-    public User(String username, String password){
+    public User(String id, String username, String password){
+        this.id = id;
         this.username = username;
         this.password = password;
         credit = 0;
@@ -14,6 +15,10 @@ public class User {
         singlecompleted = 0;
         dailycompleted = 0;
         weeklycompleted = 0;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getUsername() {

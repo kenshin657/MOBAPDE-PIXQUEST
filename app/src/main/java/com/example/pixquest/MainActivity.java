@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             //login
             Intent intent = new Intent(this, PixQuest_Main.class);
             intent.putExtra("USER", un);
+            intent.putExtra("ID", user.getId());
             startActivity(intent);
         }
         else{

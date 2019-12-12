@@ -27,8 +27,9 @@ public class PixQuest_Main extends AppCompatActivity {
 
     ListView singleList, dailyList, weeklyList;
     ArrayList<Quest> singleQuests, dailyQuests, weeklyQuests;
-    DatabaseReference databaseSingle, databaseDaily, databaseWeekly;
-    String un;
+    DatabaseReference databaseSingle, databaseDaily, databaseWeekly, userData;
+    String un, id;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class PixQuest_Main extends AppCompatActivity {
         databaseSingle = FirebaseDatabase.getInstance().getReference("singlequests");
         databaseDaily = FirebaseDatabase.getInstance().getReference("dailyquests");
         databaseWeekly = FirebaseDatabase.getInstance().getReference("weeklyquests");
+        userData = FirebaseDatabase.getInstance().getReference("users");
 
         singleList = findViewById(R.id.singleList);
         dailyList = findViewById(R.id.dailyList);
@@ -45,6 +47,9 @@ public class PixQuest_Main extends AppCompatActivity {
 
         Intent intent = getIntent();
         un = intent.getStringExtra("USER");
+        id = intent.getStringExtra("ID");
+
+        user = null;
 
         singleQuests = new ArrayList<>();
         dailyQuests = new ArrayList<>();
@@ -111,6 +116,23 @@ public class PixQuest_Main extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        userData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot item: dataSnapshot.getChildren()){
+                    User user = item.getValue(User.class);
+                    if(user.getUsername().equals(un)){
+                        PixQuest_Main.this.user = user;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         databaseSingle.addValueEventListener(new ValueEventListener() {
             @Override
@@ -262,19 +284,30 @@ public class PixQuest_Main extends AppCompatActivity {
         quest.setLastCompleted(date);
         quest.setComplete(true);
 
+        int amt = user.getCredit() + quest.getReward();
+        user.setCredit(amt);
+
+
         switch(quest.getType()){
             case 0:
+                int singlecount = user.getSinglecompleted() + 1;
+                user.setSinglecompleted(singlecount);
                 databaseSingle.child(quest.getId()).setValue(quest);
                 break;
             case 1:
+                int dailycount = user.getDailycompleted() + 1;
+                user.setDailycompleted(dailycount);
                 databaseDaily.child(quest.getId()).setValue(quest);
                 break;
             case 2:
+                int weeklycount = user.getWeeklycompleted() + 1;
+                user.setWeeklycompleted(weeklycount);
                 databaseWeekly.child(quest.getId()).setValue(quest);
                 break;
             default:
                 break;
         }
+        userData.child(id).setValue(user);
     }
 
     private boolean deletepost(String id, int type) {

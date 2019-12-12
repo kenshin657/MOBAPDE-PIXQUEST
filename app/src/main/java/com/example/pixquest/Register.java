@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
         else{
             //create user
             String id = userData.push().getKey();
-            user = new User(un, pw);
+            user = new User(id, un, pw);
             userData.child(id).setValue(user);
             Toast.makeText(Register.this, "Username added!", Toast.LENGTH_SHORT).show();
             finish();
