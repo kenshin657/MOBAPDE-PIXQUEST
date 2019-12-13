@@ -42,6 +42,7 @@ public class AdventureLicense extends AppCompatActivity {
         Intent intent = getIntent();
         un = intent.getStringExtra("USER");
 
+
         avatar = findViewById(R.id.avatarpicture);
         txt = findViewById(R.id.name);
         txt1 = findViewById(R.id.coin);

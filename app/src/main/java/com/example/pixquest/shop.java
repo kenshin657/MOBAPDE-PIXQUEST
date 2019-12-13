@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,12 +21,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class shop extends AppCompatActivity {
 
     DatabaseReference userData;
     DatabaseReference Userskin;
     String un, id;
     User user;
+    //Items items;
 
     TextView txt;
 
@@ -33,6 +37,8 @@ public class shop extends AppCompatActivity {
     String[] skinname={"baseskin","skin1","skin2","skin3","skin4","skin5","skin6","skin7","skin9","skin10"};
     String[] skinprice={"0","1","100","3","4","5","6","7","8","9","10"};
     Integer[] imgid={R.drawable.baseskin,R.drawable.skin1,R.drawable.skin2,R.drawable.skin3,R.drawable.skin4,R.drawable.skin5,R.drawable.skin6,R.drawable.skin7,R.drawable.skin8,R.drawable.skin9,R.drawable.skin10};
+
+    ArrayList<Items> ownedskin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,11 @@ public class shop extends AppCompatActivity {
 
         txt = findViewById(R.id.creditshow);
 
+        ownedskin = new ArrayList<>();
+
         Intent intent = getIntent();
         un = intent.getStringExtra("USER");
+        //id = intent.getStringExtra("ID");
 
         skinlist = findViewById(R.id.shop);
         CustomShopView customShopView = new CustomShopView(this,skinname,skinprice,imgid);
@@ -88,6 +97,27 @@ public class shop extends AppCompatActivity {
         });
 
 
+        Userskin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot item: dataSnapshot.getChildren()) {
+                    Items items = item.getValue(Items.class);
+                    if(items.getOwner().equals(un)){
+                        ownedskin.add(items);
+                        //System.out.println("added");
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 
@@ -111,7 +141,7 @@ public class shop extends AppCompatActivity {
         buybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "lol"+title, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "lol"+title, Toast.LENGTH_LONG).show();
                 buy(type);
                 b.dismiss();
             }
@@ -120,9 +150,8 @@ public class shop extends AppCompatActivity {
         equipbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "lol"+title, Toast.LENGTH_LONG).show();
-                //deletepost(postId , type);
-                //b.dismiss();
+                equipzz(type);
+                b.dismiss();
             }
         });
 
@@ -131,18 +160,65 @@ public class shop extends AppCompatActivity {
 
     }
 
-    private void buy(int id){
-        if(user.getCredit()>Integer.parseInt(skinprice[id])){
+    private void buy(int index){
 
+        Boolean check = false;
+        for(int i =0; i<ownedskin.size(); i++){
+            if(ownedskin.get(i).getItemname().equals(skinname[index])){
+                check=true;
+            }
         }
-        else{
-            Toast.makeText(getApplicationContext(), "cantafford", Toast.LENGTH_LONG).show();
+
+        if(check==true){
+            Toast.makeText(getApplicationContext(), "Already have it", Toast.LENGTH_SHORT).show();
         }
+        else {
+            if(user.getCredit()<Integer.parseInt(skinprice[index])){
+                Toast.makeText(getApplicationContext(), "You can't afford it", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                buythis(index);
+            }
+        }
+
     }
 
 
+    private void buythis(int index){
+        String key;
+        Items items;
+
+        key = Userskin.push().getKey();
+        items = new Items(key,skinname[index],skinname[index],un);
+        Userskin.child(key).setValue(items);
+        user.setCredit(user.getCredit()-Integer.parseInt(skinprice[index]));
+        user.setImg(skinname[index]);
+        Toast.makeText(getApplicationContext(), "Got it", Toast.LENGTH_SHORT).show();
+        userData.child(user.getId()).setValue(user);
 
 
+    }
+
+    private void equipzz(int index){
+        Boolean check = false;
+        for(int i =0; i<ownedskin.size(); i++){
+            if(ownedskin.get(i).getItemname().equals(skinname[index])){
+                check=true;
+            }
+        }
+
+        if(check==true){
+            Toast.makeText(getApplicationContext(), "Equipping", Toast.LENGTH_SHORT).show();
+            user.setImg(skinname[index]);
+            userData.child(user.getId()).setValue(user);
+
+        }
+        else {
+            if(user.getCredit()<Integer.parseInt(skinprice[index])){
+                Toast.makeText(getApplicationContext(), "You dont have this avatar", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 
 

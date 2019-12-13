@@ -5,15 +5,15 @@ public class Items {
     private String id;
     private String img;
     private String itemname;
-    private int price;
+    //private int price;
     private String owner;
 
     public Items(){};
-    public Items(String id, String img, String itemname, int price, String owner){
+    public Items(String id, String img, String itemname, String owner){
         this.id = id;
         this.img = img;
         this.itemname = itemname;
-        this.price = price;
+        //this.price = price;
         this.owner = owner;
     };
 
@@ -41,13 +41,6 @@ public class Items {
         this.itemname = itemname;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public String getOwner() {
         return owner;
