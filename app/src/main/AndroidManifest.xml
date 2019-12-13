@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pixquest">
 
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddQuest"></activity>
+        <activity android:name=".AdventureLicense"></activity>
+        <activity android:name=".AddQuest" />
         <activity android:name=".Register" />
         <activity android:name=".PixQuest_Main" />
         <activity android:name=".MainActivity">
@@ -22,9 +24,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlertReceiver"
+        <receiver
+            android:name=".AlertReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
     </application>
 
 </manifest>
