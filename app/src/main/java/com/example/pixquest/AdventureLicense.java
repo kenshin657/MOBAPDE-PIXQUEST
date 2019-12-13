@@ -60,14 +60,15 @@ public class AdventureLicense extends AppCompatActivity {
                     if(user.getUsername().equals(un)){
                         AdventureLicense.this.user = user;
 
-                        int skinid=0;
+
+                        int hmm=0;
                         for(int i =0; i<skinname.length; i++){
                             if(user.getImg()==skinname[i]){
-                                skinid=imgid[i];
+                                hmm=i;
                             }
                         }
 
-                        avatar.setImageResource(skinid);
+                        avatar.setImageResource(imgid[hmm]);
                         txt.setText(user.getUsername());
                         txt1.setText("Credit  " +String.valueOf(user.getCredit()));
                         txt2.setText(String.valueOf(user.getDailycompleted()));
