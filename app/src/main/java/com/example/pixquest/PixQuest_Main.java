@@ -230,6 +230,14 @@ public class PixQuest_Main extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public  void shopitems(View v){
+        Intent intent = new Intent(this, shop.class);
+        intent.putExtra("USER", un);
+        startActivity(intent);
+    }
+
+
+
     private void showCompleteDialog(final Quest quest){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();

@@ -11,7 +11,8 @@ public class User {
         this.username = username;
         this.password = password;
         credit = 0;
-        img = "default.jpg";
+        //img = "default.jpg";
+        img = "R.drawable.baseskin";
         singlecompleted = 0;
         dailycompleted = 0;
         weeklycompleted = 0;
