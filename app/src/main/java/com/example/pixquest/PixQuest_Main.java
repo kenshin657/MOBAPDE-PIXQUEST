@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -172,7 +173,9 @@ public class PixQuest_Main extends AppCompatActivity {
                         String todayData[] = date.split("-");
                         String lastData[] = quest.getLastCompleted().split("-");
                         int dayDifference = Integer.parseInt(todayData[2]) - Integer.parseInt(lastData[2]);
-                        if(dayDifference!=0){
+                        int monthDifference = Integer.parseInt(todayData[1]) - Integer.parseInt(lastData[1]);
+                        int yearDifference = Integer.parseInt(todayData[0]) - Integer.parseInt(lastData[0]);
+                        if(yearDifference!=0 || monthDifference!=0 ||dayDifference!=0){
                             quest.setComplete(false);
                             String id = quest.getId();
                             databaseDaily.child(id).setValue(quest);
@@ -197,12 +200,24 @@ public class PixQuest_Main extends AppCompatActivity {
                 weeklyQuests.clear();
 
                 Date today = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                String date = format.format(today);
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     Quest quest = postSnapshot.getValue(Quest.class);
+                    Date then = null;
                     if(quest.getOwner().equals(un)) {
+                        try {
+                            then = new SimpleDateFormat("yyyy-MM-dd").parse(quest.getLastCompleted());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        int daysapart = (int)((today.getTime() - then.getTime())/86400000);
+
+                        if(daysapart >= 7 || daysapart <= -7){
+                            quest.setComplete(false);
+                            String id = quest.getId();
+                            databaseWeekly.child(id).setValue(quest);
+                        }
                         weeklyQuests.add(quest);
                     }
                 }
