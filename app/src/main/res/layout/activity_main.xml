@@ -64,19 +64,11 @@
         android:textSize="23sp"
         android:onClick="login"/>
 
-    <com.google.android.gms.common.SignInButton
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/googleLogin"
-        android:layout_below="@+id/loginBtn"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"></com.google.android.gms.common.SignInButton>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/googleLogin"
-        android:layout_marginTop="25dp"
+        android:layout_below="@+id/loginBtn"
+        android:layout_marginTop="50dp"
         android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="18sp"

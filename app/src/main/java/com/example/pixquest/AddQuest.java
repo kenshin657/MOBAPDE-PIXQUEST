@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -118,6 +119,9 @@ public class AddQuest extends AppCompatActivity {
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alertTime, AlarmManager.INTERVAL_DAY, PendingIntent.getBroadcast(this,
                 1,alertIntent, PendingIntent.FLAG_UPDATE_CURRENT));
+
+        Toast.makeText(getApplicationContext(), "Quest Has Been Added", Toast.LENGTH_LONG).show();
+
 
         finish();
     }
