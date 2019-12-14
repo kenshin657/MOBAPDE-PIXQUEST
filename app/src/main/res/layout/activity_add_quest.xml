@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddQuest"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient">
 
     <Spinner
         android:id="@+id/type"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/title"
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/type"
+        android:background="#FFFFFF"
         android:hint="Title"/>
 
     <EditText
@@ -27,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/title"
+        android:background="#FFFFFF"
         android:hint="Description"/>
 
     <EditText
@@ -35,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/description"
+        android:background="#FFFFFF"
         android:hint="Reward Amount"/>
 
     <Button
@@ -65,6 +69,7 @@
             android:layout_height="wrap_content"
             android:hint="Date"
             android:focusableInTouchMode="false"
+            android:background="#FFFFFF"
             android:focusable="false"
             android:id="@+id/dateView"></EditText>
 
@@ -88,6 +93,7 @@
             android:layout_height="wrap_content"
             android:hint="Time"
             android:focusableInTouchMode="false"
+            android:background="#FFFFFF"
             android:focusable="false"
             android:id="@+id/timeView"></EditText>
 
