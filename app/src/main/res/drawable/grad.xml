@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval" android:padding="10dp">
-    <!-- you can use any color you want I used here gray color-->
-    <solid android:color="@color/profile"/>
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#62ACB5"
+        android:angle="0"/>
+    <corners
+        android:radius="25dp"/>
 </shape>

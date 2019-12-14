@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shop">
+    tools:context=".shop"
+    android:background="@drawable/gradient">
 
 
     <RelativeLayout
@@ -25,7 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textSize="25dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/ic_attach_money_black_24dp"/>
 
 
     </RelativeLayout>

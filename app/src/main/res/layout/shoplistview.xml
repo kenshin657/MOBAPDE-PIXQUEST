@@ -2,46 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:background="#ffffff"
+        android:background="@drawable/grad"
         android:padding="15dp">
 
-        <ImageView
-            android:id="@+id/skinimage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_weight="0.11"
-            tools:srcCompat="@tools:sample/avatars[0]"
-            />
-
-        <TextView
-            android:id="@+id/skinname"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/skinimage"
-            android:layout_toRightOf="@id/skinimage"
-            android:textColor="#333"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            android:text="TextView" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/skinprice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/skinname"
-            android:layout_toEndOf="@id/skinimage"
-            android:layout_toRightOf="@id/skinimage"
-            android:layout_weight="1"
-            android:paddingLeft="5dp"
-            android:textColor="#ff0000"
-            android:text="TextView" />
+
+            <ImageView
+                android:id="@+id/skinimage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="0.11"
+                tools:srcCompat="@tools:sample/avatars[0]"/>
+
+            <TextView
+                android:id="@+id/skinname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/skinimage"
+                android:layout_toRightOf="@id/skinimage"
+                android:text="TextView"
+                android:textColor="#333"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/skinprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/skinname"
+                android:layout_toEndOf="@id/skinimage"
+                android:layout_toRightOf="@id/skinimage"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:text="TextView"
+                android:textColor="#ff0000" />
+        </RelativeLayout>
+
+
+
     </RelativeLayout>
 </LinearLayout>
