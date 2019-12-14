@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     tools:context=".AdventureLicense">
 
-    <ImageView
-        android:id="@+id/avatarpicture"
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.11"
-        tools:srcCompat="@tools:sample/avatars[0]"
-        />
+        android:background="@drawable/grad"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/frame"
+        android:layout_marginBottom="40dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/avatarpicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.11"
+                tools:srcCompat="@tools:sample/avatars[0]"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 
     <TextView
@@ -23,20 +42,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/frame"
         android:textColor="#03A9F4"
+        android:layout_centerInParent="true"
         android:textSize="25dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:id="@+id/coin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
         android:textSize="25dp"
+        android:layout_centerInParent="true"
         android:textColor="#03A9F4"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/name"
+        android:layout_marginBottom="100dp"/>
 
 
     <TextView
@@ -44,38 +67,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
         android:textSize="25dp"
         android:textColor="#8BC34A"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/coin"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:id="@+id/weeklyquest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
         android:textSize="25dp"
         android:textColor="#8BC34A"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/singlequest"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:id="@+id/monthlyquest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
         android:textSize="25dp"
         android:textColor="#8BC34A"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/weeklyquest"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="50dp"/>
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_weight="1"
-        android:text="Back"
-        android:onClick="finish"/>
+        android:onClick="finish"
+        android:layout_below="@+id/monthlyquest"
+        android:text="Back" />
 
 
-</LinearLayout>
+</RelativeLayout>

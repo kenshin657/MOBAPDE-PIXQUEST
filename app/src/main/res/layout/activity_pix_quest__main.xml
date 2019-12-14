@@ -6,14 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".PixQuest_Main">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/header">
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:text="Adventure License"
             android:onClick="license"/>
@@ -22,7 +18,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="194dp"
             android:text="Shop"
             android:onClick="shopitems"/>
@@ -30,17 +26,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:text="Add post"
-            android:onClick="addQuest"/>
-    </RelativeLayout>
+            android:onClick="addQuest" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
-        android:orientation="vertical"
-        android:layout_below="@id/header">
+        android:orientation="vertical">
 
         <TextView
             android:text="Single Quests"
@@ -74,6 +69,8 @@
             android:id="@+id/weeklyList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
     </LinearLayout>
 
 

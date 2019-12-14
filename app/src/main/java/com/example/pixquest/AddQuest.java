@@ -110,8 +110,8 @@ public class AddQuest extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        Log.d("NOTIF",  Long.toString(alertTime));
-        Log.d("NOTIF", Long.toString(alertTime));
+        Log.d("NOTIF", "Before Subtraction: " + Long.toString(cal.getTimeInMillis()));
+        Log.d("NOTIF", "After Subtraction: " + Long.toString(alertTime));
 
 //        alarmManager.set(AlarmManager.RTC_WAKEUP, alertTime,PendingIntent.getBroadcast(this, 1, alertIntent,
 //                PendingIntent.FLAG_UPDATE_CURRENT));
