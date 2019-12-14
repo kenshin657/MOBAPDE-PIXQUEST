@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/uno"
+        android:icon="@drawable/ic_assignment_ind_black_24dp"
+        android:title="Uno" />
+
+    <item
+        android:id="@+id/dos"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="Dos" />
+
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        android:title="MAIN"/>
+
+</menu>
