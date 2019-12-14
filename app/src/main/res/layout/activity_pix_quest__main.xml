@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PixQuest_Main">
+    tools:context=".PixQuest_Main"
+    android:background="@drawable/gradient">
 
         <RelativeLayout
             android:layout_width="match_parent"
