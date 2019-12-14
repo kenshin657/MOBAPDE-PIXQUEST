@@ -214,9 +214,7 @@ public class shop extends AppCompatActivity {
 
         }
         else {
-            if(user.getCredit()<Integer.parseInt(skinprice[index])){
                 Toast.makeText(getApplicationContext(), "You dont have this avatar", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
