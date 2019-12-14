@@ -1,6 +1,7 @@
 package com.example.pixquest;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -30,6 +31,7 @@ public class PixQuest_Main extends AppCompatActivity {
     DatabaseReference databaseSingle, databaseDaily, databaseWeekly, userData;
     String un, id;
     User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
