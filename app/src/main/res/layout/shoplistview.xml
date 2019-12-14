@@ -41,7 +41,7 @@
             android:layout_toRightOf="@id/skinimage"
             android:layout_weight="1"
             android:paddingLeft="5dp"
-            android:textColor="#3333"
+            android:textColor="#ff0000"
             android:text="TextView" />
     </RelativeLayout>
 </LinearLayout>

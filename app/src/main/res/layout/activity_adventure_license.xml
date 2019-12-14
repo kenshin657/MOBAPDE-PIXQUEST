@@ -4,14 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AdventureLicense">
+
+    <ImageView
+        android:id="@+id/avatarpicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        tools:srcCompat="@tools:sample/avatars[0]"
+        />
+
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="top"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#03A9F4"
+        android:textSize="25dp"
         android:text="TextView" />
 
     <TextView
@@ -19,21 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="#03A9F4"
         android:text="TextView" />
 
-    <ImageView
-        android:id="@+id/avatarpicture"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_weight="0.11"
-        tools:srcCompat="@tools:sample/avatars[0]"
-        />
 
     <TextView
         android:id="@+id/singlequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="#8BC34A"
         android:text="TextView" />
 
     <TextView
@@ -41,6 +54,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="#8BC34A"
         android:text="TextView" />
 
     <TextView
@@ -48,12 +64,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="#8BC34A"
         android:text="TextView" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
         android:layout_weight="1"
         android:text="Back"
         android:onClick="finish"/>

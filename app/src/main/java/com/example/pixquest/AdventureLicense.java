@@ -71,10 +71,10 @@ public class AdventureLicense extends AppCompatActivity {
 
                         avatar.setImageResource(imgid[hmm]);
                         txt.setText(user.getUsername());
-                        txt1.setText("Credit  " +String.valueOf(user.getCredit()));
-                        txt2.setText(String.valueOf(user.getDailycompleted()));
-                        txt3.setText(String.valueOf(user.getSinglecompleted()));
-                        txt4.setText("something" + String.valueOf(user.getWeeklycompleted()));
+                        txt1.setText("Credit : " +String.valueOf(user.getCredit()));
+                        txt2.setText("Daily Quest Completed : " +String.valueOf(user.getDailycompleted()));
+                        txt3.setText("Single Quest Completed :"+String.valueOf(user.getSinglecompleted()));
+                        txt4.setText("Weekly Quest Completed :" + String.valueOf(user.getWeeklycompleted()));
 
                         //System.out.println(user.getCredit());
 

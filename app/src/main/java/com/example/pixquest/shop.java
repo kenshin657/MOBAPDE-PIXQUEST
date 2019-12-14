@@ -35,7 +35,7 @@ public class shop extends AppCompatActivity {
 
     ListView skinlist;
     String[] skinname={"baseskin","skin1","skin2","skin3","skin4","skin5","skin6","skin7","skin9","skin10"};
-    String[] skinprice={"0","1","100","3","4","5","6","7","8","9","10"};
+    String[] skinprice={"0","10","50","80","100","120","150","180","200","250","500"};
     Integer[] imgid={R.drawable.baseskin,R.drawable.skin1,R.drawable.skin2,R.drawable.skin3,R.drawable.skin4,R.drawable.skin5,R.drawable.skin6,R.drawable.skin7,R.drawable.skin8,R.drawable.skin9,R.drawable.skin10};
 
     ArrayList<Items> ownedskin;
